@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<!--用你网页站点的名字编辑替换文件内的 {{ site_header|default:_('Django administration') }} （包含大括号）-->
+<!--<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>-->
+<h1 id="site-name"><a href="{% url 'admin:index' %}">vote 网站</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

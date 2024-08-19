@@ -1,0 +1,34 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+    <h1>Flaskr</h1>
+    <ul>
+        <!--
+        g 在模板中是自动可用的
+        基于 g.user 是否被设定（load_logged_in_user），要么显示用户名和登出链接，要么显示注册和登录链接
+
+        url_for() 在模板中也是自动可用的，它被用来生成指向视图的 URL
+        -->
+        {% if g.user %}
+        <li><span>{{ g.user['username'] }}</span>
+        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+        {% else %}
+        <li><a href="{{ url_for('auth.register') }}">Register</a>
+        <li><a href="{{ url_for('auth.login') }}">Log In</a>
+        {% endif %}
+    </ul>
+</nav>
+<section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    <!--
+    在页面标题之后，页面内容之前，模板迭代了 get_flashed_messages() 返回的每一条消息
+    你在视图里使用 flash() 来发送错误消息，而这些就是把它们显示出来的代码
+    -->
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</section>

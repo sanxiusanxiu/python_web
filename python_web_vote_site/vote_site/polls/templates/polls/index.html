@@ -1,0 +1,18 @@
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+<!--         硬编码和强耦合的链接，对于一个包含很多应用的项目来说，修改起来是十分困难的 -->
+<!--        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>-->
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
