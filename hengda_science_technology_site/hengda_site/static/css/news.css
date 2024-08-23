@@ -1,0 +1,60 @@
+/*分页控件的一些样式*/
+.paging{
+    text-align: center;
+}
+.pagination .active a{
+    background-color: #005197;
+    border-color: #005197;
+}
+/*新闻列表样式*/
+.news-model{
+    margin-top: 15px;
+}
+.news-model span{
+    float: right;
+}
+.news-model a{
+    color: #666666;
+    font-size: 16px;
+}
+.news-model a:hover,.news-model a:focus{
+    text-decoration: none;
+    color: #d30a1c;
+}
+.news-model p{
+    margin-top: 5px;
+    font-size: 13px;
+}
+/*新闻详情*/
+.model-details-new-title{
+    padding: 15px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid #005197 1px;
+    color: #005197;
+    font-size: 18px;
+    text-align: center;
+}
+.model-foot{
+    padding: 5px 0px;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    color: #545353;
+}
+/*新闻搜索框样式*/
+.model-details-title-search{
+    font-size: 18px;
+    width: 300px;
+    float: right;
+    margin-bottom: 20px;
+}
+.news-search-model span{
+    float: none;
+}
+.news-model a span{
+    float: none;
+}
+.highlighted{
+    color:red;
+}

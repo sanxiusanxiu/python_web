@@ -1,0 +1,32 @@
+/* 整体背景样式 */
+body{
+    background-image: url("../img/bg.gif");
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-backdrop-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+}
+/* 文本框样式 */
+.input_show{
+    margin-top: 35px;
+    max-width: 280px;
+    height: 35px;
+}
+/* 数字按钮样式 */
+.btn_num{
+    margin: 1px 1px 1px 1px;
+    width: 60px;
+}
+/* 清空按钮样式 */
+.btn_clear{
+    margin-left: 40px;
+    margin-right: 20px;
+}
+/* 背景拉伸 */
+.extendContent{
+    height: 300px;
+}

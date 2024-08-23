@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- 兼容性 -->
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>在线计算器</title>
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../static/css/style.css"/>
+        <script src="../static/js/jquery-1.12.4.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-1 col-sm-4"></div>
+                <div id="computer" class="col-xs-10 col-sm-6">
+                    <!-- 计算器主体部分 -->
+                    <input type="text" id="txt_code" name="txt_code" value=""
+                    class="form-control input_show" placeholder="公式计算" disabled/>
+                    <input type="text" id="txt_result" name="txt_result" value=""
+                    class="form-control input_show" placeholder="结果" disabled/>
+                    <br/>
+                    <div>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_7()">7</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_8()">8</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_9()">9</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_div()">÷</button>
+                        <br/>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_4()">4</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_5()">5</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_6()">6</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_mul()">×</button>
+                        <br/>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_1()">1</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_2()">2</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_3()">3</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_sub()">-</button>
+                        <br/>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_0()">0</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_00()">00</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_dot()">.</button>
+                        <button type="button" class="btn btn-default btn_num"
+                        onclick="func_add()">+</button>
+                    </div>
+                    <div>
+                        <br/>
+                        <button type="button" class="btn btn-success btn-lg btn_clear"
+                        id="lgbut_clear" onclick="func_clear()">清空</button>
+                        <button type="button" class="btn btn-primary btn-lg "
+                        id="lgbut_compute">计算</button>
+                    </div>
+                </div>
+                <div class="col-xs-1 col-sm-2"></div>
+            </div>
+        </div>
+        <div class="extendContent"></div>
+        <script>
+            var x = document.getElementById("txt_code");
+            var y = document.getElementById("txt_result");
+            //
+            function func_7(){x.value += '7';}
+            function func_8(){x.value += '8';}
+            function func_9(){x.value += '9';}
+            function func_div(){x.value += '/';}
+            function func_4(){x.value += '4';}
+            function func_5(){x.value += '5';}
+            function func_6(){x.value += '6';}
+            function func_mul(){x.value += '*';}
+            function func_1(){x.value += '1';}
+            function func_2(){x.value += '2';}
+            function func_3(){x.value += '3';}
+            function func_sub(){x.value += '-';}
+            function func_0(){x.value += '0';}
+            function func_00(){x.value += '00';}
+            function func_dot(){x.value += '.';}
+            function func_add(){x.value += '+';}
+            function func_clear(){
+                x.value = '';
+                y.value = '';
+            }
+        </script>
+        <script>
+            function ShowResult(data){
+                var y = document.getElementById("txt_result");
+                y.value = data['result'];
+            }
+        </script>
+        <script>
+            $('#lgbut_compute').click(function(){
+                $.ajax({
+                    url: '/compute/', // 调用Django后台服务器计算公式
+                    type: 'POST', // 请求类型
+                    data: {'code': $('#txt_code').val()}, // 获取文本框中的公式
+                    dataType: 'json', // 期望获得的相应类型为JSON
+                    success: ShowResult // 在请求成功之后调用函数输出结果
+                })
+            })
+        </script>
+    </body>
+</html>
